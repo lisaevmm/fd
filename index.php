@@ -1,66 +1,56 @@
 <?php
 
-$host = '127.0.0.1';
-$db = 'news';
-$user = 'root';
-$pass = '';
-$charset = 'utf8';
+include 'pdoConnection.php';
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$opt = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
-$pdo = new PDO($dsn, $user, $pass, $opt);
-
-
-$table_data = $pdo->query('SELECT * FROM news_list');
-
-//echo "<table>";
-//while ($row = $table_data->fetch()) {
-//    echo "<tr>";
-//    foreach ($row as $cell) {
-//        echo "<td>" . $cell . "</td>>";
-//    }
-//    echo "</tr>";
-//}
-//echo "</table>";
+$table_data = $pdoConnection->query('SELECT * FROM news_list');
 
 
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<header>
-
+<header class="main-header">
+    <div class="content">
+        <div class="main-logo">
+            <a href="#" class="logo-link">
+                <img src="" alt="ЛОГО" width="50" height="30">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="" class="nav-link current">Новости</a></li>
+                <li class="nav-item"><a href="" class="nav-link">Контакты</a></li>
+                <li class="nav-item"><a href="" class="nav-link">О нас</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
-<main>
-    <h1>
-        Новости
-    </h1>
+<main class="content">
     <ul class="news-list">
         <?php
         while ($row = $table_data->fetch()) {
             echo "<li class='news-list-item'>";
-            echo "<h2> {$row['title']} </h2>";
-            echo "<img src='{$row['title']}' alt='ФОТОКАРТОЧКА'>";
-            echo "<p> {$row['text']} </p>";
+            echo "<a href='#'><h2> {$row['title']} </h2></a>";
+            echo "<img class='news-preview-pic' src='{$row['main_img_link']}' alt='ФОТОКАРТОЧКА' width='300' height='200'>";
+            echo "<p class='news-text'> {$row['text']} </p>";
 
             echo "</li>";
         }
         ?>
     </ul>
 </main>
-<footer>
+<footer class="main-footer">
+    <div class="content">
 
+    </div>
 </footer>
 </body>
 </html>

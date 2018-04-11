@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить статью</title>
+</head>
+<body style="padding: 20px 40px;">
+<h1>Добавить статью</h1>
+<form action="addArticle.php" method="POST">
+    <p>
+        <label>
+            Название:
+            <br>
+            <input type="text" name="title" required>
+        </label>
+    </p>
+    <p>
+        <label>
+            <!--пока для примера-->
+            Ссылка на картинку:
+            <br>
+            <input type="text" name="img-link">
+        </label>
+    </p>
+    <p>
+        <label>
+            Содержание:
+            <br>
+            <textarea name="text" id="" cols="50" rows="10" required></textarea>
+        </label>
+    </p>
+    <input type="submit" value="Добавить">
+</form>
+
+</body>
+</html>
