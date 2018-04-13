@@ -6,7 +6,7 @@ include_once 'app/code.php';
 
 $pageCode = $_GET['code'];
 $stmt = $pdoConnection->prepare('SELECT * FROM news_list WHERE code= :code');
-$stmt->execute(array('code' => $pageCode));
+$stmt->execute(['code' => $pageCode]);
 $row = $stmt->fetch(PDO::FETCH_LAZY);
 
 //echo "<pre>";
@@ -17,9 +17,7 @@ if (!$row) {
     exit();
 }
 
-
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,9 +35,9 @@ if (!$row) {
 
 <main class="content">
     <ul class="news-list">
-        <?php
+        <h1><?=$row['title']?></h1>
+        <?
 
-        echo "<h1> {$row['title']} </h1>";
         echo "<img class='news-preview-pic' src='{$row['main_img_link']}' alt='картинка - {$row['title']}' width='50%' style='display: block; margin: 0px auto;'>";
         echo "<p class='news-text'> {$row['text']} </p>";
 

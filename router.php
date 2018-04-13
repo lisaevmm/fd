@@ -12,9 +12,11 @@ $currentLevel = 0;
 $isSection = !strpos($pathArr[$currentLevel], '.html');
 if ($isSection) {
     $currentSection = $pathArr[$currentLevel];
-    if ($currentSection == 'news') {
-        $pageCode = $pathArr[$currentLevel+1];
-        $pageCode=substr($pageCode, 0, strpos($pageCode, ".html"));  //удаляем из ссылки расширение файла
+    if ($currentSection === 'news') {
+        $pageCode = $pathArr[$currentLevel + 1];
+
+        // Удаляем из ссылки расширение файла
+        $pageCode = substr($pageCode, 0, strpos($pageCode, ".html"));
         $_GET['code'] = $pageCode;
         $pagePath = 'news.php';
     }

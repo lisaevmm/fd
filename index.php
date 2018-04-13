@@ -2,6 +2,7 @@
 
 include_once 'app/pdoConnection.php';
 include_once 'templates/header.php';
+include_once 'app/code.php';
 
 
 $stmt = $pdoConnection->prepare('SELECT * FROM news_list order by id DESC');
@@ -28,14 +29,25 @@ $table_data = $stmt->fetchAll();
 </header>
 <main class="content">
     <ul class="news-list">
+        <?/*foreach ($table_data as $row):?>
+            <?
+
+            $pageCode = ($row['code']) ? $row['code'] : $row['id'];
+            $pageCode = generateLink("/news", $pageCode);
+
+            ?>
+            <li class="news-list-item">
+
+            </li>
+        <?endforeach;*/?>
+
         <?php
         foreach ($table_data as $row) {
-            echo "<li class='news-list-item'>";
-            $pageCode = ($row['code'])? $row['code'] : $row['id'];
-            $pageCode = "news/" . $pageCode . ".html";
-            /////   ОТДАЮ ССЫЛКИ КОТОРЫЕ ОКАНЧИВАЮТСЯ НА .HTML
+            echo "<li class=\"news-list-item\">";
+            $pageCode = ($row['code']) ? $row['code'] : $row['id'];
+            $pageCode = generateLink("/news", $pageCode);
             echo "<a href='{$pageCode}'><h2> {$row['title']} </h2></a>";
-            echo "<img class='news-preview-pic' src='{$row['main_img_link']}' alt='картинка - {$row['title']}' width='300' height='200'>";
+            echo "<img class='news-preview-pic' src='{$row['main_img_link']}' alt=\"картинка - {$row['title']}\" width='300' height='200'>";
             echo "<p class='news-text'> {$row['text']} </p>";
 
             echo "</li>";
