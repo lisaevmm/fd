@@ -6,6 +6,7 @@ include_once 'app/code.php';
 
 $pageCode = $_GET['code'];
 $stmt = $pdoConnection->prepare('SELECT * FROM news_list WHERE code= :code');
+echo gettype($pdoConnection);
 $stmt->execute(['code' => $pageCode]);
 $row = $stmt->fetch(PDO::FETCH_LAZY);
 
