@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить статью</title>
+</head>
+
+<body style="padding: 20px 40px;">
+    <h1>Добавить статью</h1>
+    <form enctype="multipart/form-data" action="add-article.php" method="POST">
+        <p>
+            <label>
+                Название:
+                <br>
+                <input type="text" name="title-field" required>
+            </label>
+
+        </p>
+        <p>
+            <button type="button" onclick="generateLink()" name="js-generate-link">Сгенерировать ссылку</button>
+            <br>
+            <label>
+                Ссылка на статью:
+                <br>
+                <input type="text" name="link-field" pattern="^([-a-zA-Z])+$" placeholder="только латиница и '-'" required>
+            </label>
+        </p>
+        <p>
+            <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+            <label>
+                Картинка для превью:
+                <br>
+                <input type="file" name="img-file">
+            </label>
+        </p>
+        <p>
+            <label>
+                Содержание:
+                <br>
+                <textarea name="text-field" id="" cols="50" rows="10" required></textarea>
+            </label>
+        </p>
+        <input type="submit" value="Добавить">
+    </form>
+
+
+    <script>
+        
+        function translitText(text) {
+            var arrru = new Array('Я', 'я', 'Ю', 'ю', 'Ч', 'ч', 'Ш', 'ш', 'Щ', 'щ', 'Ж', 'ж', 'А', 'а', 'Б', 'б', 'В', 'в', 'Г', 'г', 'Д', 'д', 'Е', 'е', 'Ё', 'ё', 'З', 'з', 'И', 'и', 'Й', 'й', 'К', 'к', 'Л', 'л', 'М', 'м', 'Н', 'н', 'О', 'о', 'П', 'п', 'Р', 'р', 'С', 'с', 'Т', 'т', 'У', 'у', 'Ф', 'ф', 'Х', 'х', 'Ц', 'ц', 'Ы', 'ы', 'Ь', 'ь', 'Ъ', 'ъ', 'Э', 'э', ' ');
+            var arren = new Array('Ya', 'ya', 'Yu', 'yu', 'Ch', 'ch', 'Sh', 'sh', 'Sh', 'sh', 'Zh', 'zh', 'A', 'a', 'B', 'b', 'V', 'v', 'G', 'g', 'D', 'd', 'E', 'e', 'E', 'e', 'Z', 'z', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'F', 'f', 'H', 'h', 'C', 'c', 'Y', 'y', '', '', '', '', 'E', 'e', '-');
+
+            for (var i = 0; i < arrru.length; i++) {
+                var reg = new RegExp(arrru[i], "g");
+                text = text.replace(reg, arren[i]);
+            }
+            return text;
+        }
+
+        function generateLink() {
+            // alert("124");
+            var title = document.getElementsByName("title-field")[0].value;
+            var trans = translitText(title);
+            trans += ".html";
+            document.getElementsByName("link-field")[0].value = trans;
+            // alert(trans);
+        }
+
+
+    </script>
+</body>
+
+</html>
