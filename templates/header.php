@@ -1,16 +1,18 @@
 <?php
-//include_once '../app/pdoConnection.php';
-$menuList = $pdoConnection->query("SELECT * FROM menu_list;");
+//include_once '../vendor/autoload.php';
+
 
 function getSiteHeader($name) {
-    global $menuList;
+    $db = DbProvider::getInstance();
+    $menuList = $db->getAll('menu_list');
+
     $logoLink = "href='/index.php'";
     if ($name == "Главная" || $name == "Новости") {
         $logoLink = null;
     }
 
     echo
-    <<<END
+    <<<FFF
     <div class="content">
         <div class="main-logo">
             <a {$logoLink} class="logo-link">
@@ -19,8 +21,9 @@ function getSiteHeader($name) {
         </div>
         <nav class="main-nav">
             <ul class="nav-list">
-END;
-    while ($row = $menuList->fetch()) {
+FFF;
+
+    foreach ($menuList as $row) {
         echo "<li class='nav-item'>";
         if ($name == $row['name']) {
             echo "<a href='{$row['link']}' class='nav-link current'>{$row['name']}</a>";
@@ -31,12 +34,11 @@ END;
     }
 
     echo
-    <<<END
+    <<<FFF
             </ul>
         </nav>
     </div>
-
-END;
+FFF;
 
 
 }

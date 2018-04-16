@@ -1,13 +1,16 @@
 <?php
+require_once 'vendor/autoload.php';
+//include_once 'app/code.php';
+//include_once 'templates/header.php';
 
-include_once 'app/pdoConnection.php';
-include_once 'templates/header.php';
-include_once 'app/code.php';
+//$tableName = 'news_list';
+//$stmt = $pdoConnection->prepare("SELECT * FROM {$tableName} order by id DESC");
+//$stmt->execute();
+//$table_data = $stmt->fetchAll();
 
+$db = DbProvider::getInstance();
+$table_data = $db->getOrderBy('news_list', 'id', 'DESC' );
 
-$stmt = $pdoConnection->prepare('SELECT * FROM news_list order by id DESC');
-$stmt->execute();
-$table_data = $stmt->fetchAll();
 //echo "<pre>";
 //print_r($table_data);
 

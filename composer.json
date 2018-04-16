@@ -1,0 +1,9 @@
+{
+  "require": {
+    "monolog/monolog": "1.23.0"
+  },
+  "autoload": {
+	"classmap": ["classes/"],
+	"files": ["templates/header.php", "app/code.php"]    
+  }
+}
