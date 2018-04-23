@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class DbProvider
+ */
 class DbProvider
 {
     /** @var PDO */
@@ -91,13 +94,12 @@ class DbProvider
         return $stmt->fetchAll();
     }
 
-
     /**
+     *
      * @param   string  $tableName  Таблица которую ищем
      * @param   string  $orderByColumn  Колонка для сортировки
      * @param   string  $ASCorDESC  Сортировка прямая-обратная - использовать слова *ASC* или *DESC*
      * @return  array   Массив массивов - проще говоря таблица
-     *
      */
     function getOrderBy(string $tableName, string $orderByColumn, string $ASCorDESC)
     {
@@ -119,7 +121,7 @@ class DbProvider
         //
     }
 
-    /*
+    /**
      * @param   string  $tableName  Таблица которую ищем
      * @param   array  $columnNames Массив названий колонок
      * @param   array  $columnValues Массив значений

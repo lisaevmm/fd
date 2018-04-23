@@ -1,4 +1,5 @@
 <?php
+
 require_once 'vendor/autoload.php';
 //include_once 'app/code.php';
 //include_once 'templates/header.php';
@@ -13,7 +14,6 @@ $table_data = $db->getOrderBy('news_list', 'id', 'DESC' );
 
 //echo "<pre>";
 //print_r($table_data);
-
 
 ?>
 <!doctype html>
